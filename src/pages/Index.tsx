@@ -62,7 +62,7 @@ const Index = () => {
 
       <footer className="py-6 bg-secondary/30">
         <div className="container mx-auto px-4 text-center text-gray-600">
-          <p>© 2025 Made with ❤️ by Apoorva</p>
+          <p>© 2025 Made with ❤️</p>
         </div>
       </footer>
     </div>
