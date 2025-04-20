@@ -13,7 +13,7 @@ export const NavBar = () => {
             <div className="p-2 bg-secondary/50 rounded-full">
               <Zap className="h-6 w-6 text-red-500" />
             </div>
-            <span>Let's Learn</span>
+            <span>aaalgorithmia</span>
           </Link>
 
           <div className="flex items-center gap-4">
