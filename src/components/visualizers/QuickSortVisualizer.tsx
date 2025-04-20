@@ -30,15 +30,15 @@ export function QuickSortVisualizer() {
           if (isNaN(num)) throw new Error(`"${item}" is not a valid number`);
           return num;
         });
-      
+
       if (parsed.length < 2) {
         throw new Error("Please provide at least 2 numbers");
       }
-      
+
       if (parsed.length > 20) {
         throw new Error("Please provide at most 20 numbers for better visualization");
       }
-      
+
       return parsed;
     } catch (error) {
       setInputError((error as Error).message);
@@ -58,12 +58,12 @@ export function QuickSortVisualizer() {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-    
+
     setIsPlaying(false);
-    
+
     const numbersToSort = array || parseAndValidateInput(inputArray);
     if (!numbersToSort) return;
-    
+
     setInputError("");
     const steps = randomizedQuicksort(numbersToSort);
     setSortSteps(steps);
@@ -97,13 +97,13 @@ export function QuickSortVisualizer() {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-    
+
     if (isPlaying && currentStepIndex < sortSteps.length - 1) {
       // Convert speed (1-100) to timer interval (1000ms - 100ms)
       const interval = 1100 - speed[0] * 10;
       timerRef.current = window.setInterval(goToNextStep, interval);
     }
-    
+
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
@@ -138,9 +138,9 @@ export function QuickSortVisualizer() {
             placeholder="e.g., 64, 34, 25, 12, 22, 11, 90"
             className={inputError ? "border-red-500" : ""}
           />
-          <Button 
-            variant="outline" 
-            size="icon" 
+          <Button
+            variant="outline"
+            size="icon"
             onClick={generateNewArray}
             title="Generate Random Array"
           >
@@ -148,7 +148,7 @@ export function QuickSortVisualizer() {
           </Button>
         </div>
         {inputError && <p className="text-red-500 text-sm mt-1">{inputError}</p>}
-        <Button onClick={() => resetAndStartSort()} className="mt-2">
+        <Button onClick={() => resetAndStartSort()} className="mt-2 bg-red-500 text-white hover:bg-red-600">
           Sort
         </Button>
       </div>
@@ -175,12 +175,12 @@ export function QuickSortVisualizer() {
                 </span>
               )}
               {currentStep.left === index && (
-                <span className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-[hsl(var(--algo-unsorted))]">
+                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-xs font-bold text-[hsl(var(--algo-unsorted))]">
                   Left
                 </span>
               )}
               {currentStep.right === index && (
-                <span className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-[hsl(var(--algo-processing))]">
+                <span className="absolute -top-16 left-1/2 transform -translate-x-1/2 text-xs font-bold text-[hsl(var(--algo-processing))]">
                   Right
                 </span>
               )}
@@ -209,10 +209,12 @@ export function QuickSortVisualizer() {
             >
               <SkipBack className="h-4 w-4" />
             </Button>
-            <Button 
-              variant={isPlaying ? "secondary" : "default"} 
+            <Button
+              variant={isPlaying ? "secondary" : "default"}
               onClick={handlePlayPause}
               disabled={currentStepIndex === sortSteps.length - 1}
+              className={`bg-red-500 text-white hover:bg-red-600 ${isPlaying ? "bg-red-500" : "bg-red-500"}`} // Red background and white text
+
             >
               {isPlaying ? <Pause className="h-4 w-4 mr-2" /> : <Play className="h-4 w-4 mr-2" />}
               {isPlaying ? "Pause" : "Play"}
@@ -227,9 +229,9 @@ export function QuickSortVisualizer() {
             </Button>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-500">Speed:</span>
+          <span className="text-sm text-gray  -500">Speed:</span>
           <Slider
             value={speed}
             min={1}
